@@ -1,0 +1,73 @@
+﻿@model PRP_CLIENT.Models.User
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+        @if (httpContextAccessor.HttpContext.Session.GetString("role") == "admin")
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Login)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Login)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RoleId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RoleId)
+        </dd>
+        @if (httpContextAccessor.HttpContext.Session.GetString("role") == "admin")
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IsDeleted)
+            </dd>
+        }
+        </dl>
+</div>
+<div>
+    <a asp-action="Index" asp-route-id="@ViewBag.page">Back to List</a>
+</div>

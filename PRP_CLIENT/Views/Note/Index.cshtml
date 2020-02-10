@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PRP_CLIENT.Models.Note>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Company id : @ViewBag.companyId notes</h1>
+
+<p>
+    <a>@Html.ActionLink("Create", "Create", new { companyId = ViewBag.companyId }) | @Html.ActionLink("Back to company list", "Index", "Company")</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NoteId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoteId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.NoteId, companyId = ViewBag.companyId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.NoteId, companyId = ViewBag.companyId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

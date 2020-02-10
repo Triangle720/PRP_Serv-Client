@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PRP_CLIENT.Models.Branch>
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@if (httpContextAccessor.HttpContext.Session.GetString("role") == "admin")
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BranchId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @if (httpContextAccessor.HttpContext.Session.GetString("role") == "admin")
+                    {
+                        @Html.ActionLink("Edit |", "Edit", new { id = item.BranchId })
+                        @Html.ActionLink("Delete |", "Delete", new { id = item.BranchId })
+                    }
+                    @Html.ActionLink("Details", "Details", new { id = item.BranchId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
